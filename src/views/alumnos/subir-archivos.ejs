@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <%- include('../partials/head') %>
+</head>
+
+<body>
+  <%- include('../partials/navbar') %>
+  <main>
+    <form action="/alumnos/subir-archivos" method="post" enctype="multipart/form-data" id="archivos">
+      <div class="container">
+        <input type="text" name="codigo" id="codigo" value="<%= codigo %>">
+        <div class="file">
+          <div class="pdf-container">
+            <canvas id="preview-ine"></canvas>
+          </div>
+          <span id="file-name-ine">Ningún archivo seleccionado</span>
+          <label for="ine">Cargar INE</label>
+          <input type="file" name="ine" id="ine" accept=".pdf">
+        </div>
+        <div class="file">
+          <div class="pdf-container">
+            <canvas id="preview-curp"></canvas>
+          </div>
+          <span id="file-name-curp">Ningún archivo seleccionado</span>
+          <label for="curp">Cargar CURP</label>
+          <input type="file" name="curp" id="curp" accept=".pdf">
+        </div>
+        <div class="file">
+          <div class="pdf-container">
+            <canvas id="preview-domicilio"></canvas>
+          </div>
+          <span id="file-name-domicilio">Ningún archivo seleccionado</span>
+          <label for="domicilio">Cargar comprobante de domicilio</label>
+          <input type="file" name="domicilio" id="domicilio" accept=".pdf">
+        </div>
+        <div class="file">
+          <div class="pdf-container">
+            <canvas id="preview-solicitud"></canvas>
+          </div>
+          <span id="file-name-solicitud">Ningún archivo seleccionado</span>
+          <label for="solicitud">Cargar formato de solicitud</label>
+          <input type="file" name="solicitud" id="solicitud" accept=".pdf">
+        </div>
+        <div class="file">
+          <div class="pdf-container">
+            <canvas id="preview-edoCuenta"></canvas>
+          </div>
+          <span id="file-name-edoCuenta">Ningún archivo seleccionado</span>
+          <label for="edoCuenta">Cargar estado de cuenta bancario</label>
+          <input type="file" name="edoCuenta" id="edoCuenta" accept=".pdf">
+        </div>
+        <div class="file">
+          <div class="pdf-container">
+            <canvas id="preview-ingresos"></canvas>
+          </div>
+          <span id="file-name-ingresos">Ningún archivo seleccionado</span>
+          <label for="ingresos">Cargar comprobante de ingresos</label>
+          <input type="file" name="ingresos" id="ingresos" accept=".pdf">
+        </div>
+        <div class="file">
+          <div class="pdf-container">
+            <canvas id="preview-fiscal"></canvas>
+          </div>
+          <span id="file-name-fiscal">Ningún archivo seleccionado</span>
+          <label for="fiscal">Cargar constancia de situación fiscal</label>
+          <input type="file" name="fiscal" id="fiscal" accept=".pdf">
+        </div>
+      </div>
+      <div class="enviar">
+        <button type="submit">Enviar documentos</button>
+      </div>
+    </form>
+  </main>
+  <script src="/scripts/script.js"></script>
+  <script src="/scripts/script-subir-archivos.js"></script>
+</body>
+</html>
+
+  
+

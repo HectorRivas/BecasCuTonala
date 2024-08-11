@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/styles/login.css">
+</head>
+
+<body data-theme="light">
+  <main>
+    <div class="div-login">
+      <img src="/img/LogoCUT.png" alt="Logo CuTonala">
+      <form action="/admin/iniciar-sesion-administrador" method="post" id="login">
+        <label for="codigo">Código</label>
+        <input type="text" name="codigo" id="codigo" pattern="[0-9]+" inputmode="numeric" placeholder="Código" required>
+        <label for="password">Contraseña</label>
+        <input type="password" name="password" id="password" placeholder="Contraseña" required>
+        <button type="submit" id="entrar" disabled>Entrar</button>
+      </form>
+    </div>
+  </main>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const codigo = document.getElementById('codigo')
+      const password = document.getElementById('password')
+      const btn = document.getElementById('entrar')
+
+      function checkInputs() {
+        if (codigo.value === '' || password.value === '') {
+          btn.disabled = true
+        } else {
+          btn.disabled = false
+        }
+      }
+
+      codigo.addEventListener('input', checkInputs)
+      password.addEventListener('input', checkInputs)
+
+      function showError(message) {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: message,
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
+
+      const urlParams = new URLSearchParams(window.location.search)
+      if (urlParams.has('error')) {
+        showError('Código y/o contraseña incorrectos')
+      }
+    })
+
+  </script>
+  <script src="/scripts/sweetalert2.all.min.js"></script>
+</body>
+
+</html>

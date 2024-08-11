@@ -1,0 +1,73 @@
+.div-form{
+  display: flex;
+  flex-direction: column;
+  width: 500px;
+  max-width: 500px;
+  min-width: 300px;
+  height: auto;
+  padding: 15px;
+  box-shadow: 0px 5px 8px rgba(24, 132, 255, 0.35);
+  outline: 1px solid rgba(49, 145, 255, 0.2);
+  border-radius: 10px;
+}
+
+form h1{
+  font-size: xx-large;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+form p{
+  margin-bottom: 20px;
+}
+
+form label{
+  font-weight: bold;
+  opacity: 0.7;
+}
+
+form input{
+  width: 100%;
+  height: 30px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: none;
+  outline: 1px solid rgba(199, 199, 199, 0.8);
+  border-radius: 3px;
+  padding: 10px;
+  transition: ease 0.4s;
+}
+
+form select{
+  width: 100%;
+  height: 40px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  border: none;
+  outline: 1px solid rgba(199, 199, 199, 0.8);
+  border-radius: 3px;
+  padding: 10px;
+}
+
+form input:focus, select:focus{
+  outline: 1px solid rgba(0, 119, 255, 0.8);
+  border-radius: 15px;
+  box-shadow: 0 0 8px rgba(0, 119, 255, 0.45);
+}
+
+form button{
+  width: 100%;
+  padding: 10px;
+  color: white;
+  font-weight: bold;
+  background-color: rgb(31, 114, 216);
+  border: none;
+  border-radius: 15px;
+  transition: ease 0.15s;
+}
+
+form button:hover{
+  cursor: pointer;
+  scale: 1.02;
+}
