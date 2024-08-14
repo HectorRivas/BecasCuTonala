@@ -19,6 +19,8 @@
       </form>
     </div>
   </main>
+
+  <script src="/scripts/sweetalert2.all.min.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       const codigo = document.getElementById('codigo')
@@ -36,24 +38,25 @@
       codigo.addEventListener('input', checkInputs)
       password.addEventListener('input', checkInputs)
 
-      function showError(message) {
-        Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          title: message,
-          showConfirmButton: false,
-          timer: 2000
-        })
-      }
+      const alerta = <%= JSON.stringify(alerta) %>;
+      const posicion = '<%= posicion %>';
+      const icono = '<%= icono %>';
+      const mensaje = '<%= mensaje %>';
+      const boton = <%= boton %>;
+      const temporizador = <%= temporizador %>;
 
-      const urlParams = new URLSearchParams(window.location.search)
-      if (urlParams.has('error')) {
-        showError('Código y/o contraseña incorrectos')
+      if (alerta) {
+        Swal.fire({
+          position: posicion,
+          icon: icono,
+          title: mensaje,
+          showConfirmButton: boton,
+          timer: temporizador
+        })
       }
     })
 
   </script>
-  <script src="/scripts/sweetalert2.all.min.js"></script>
 </body>
 
 </html>

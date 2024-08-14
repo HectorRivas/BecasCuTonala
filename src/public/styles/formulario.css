@@ -1,4 +1,4 @@
-.div-form{
+.div-form {
   display: flex;
   flex-direction: column;
   width: 500px;
@@ -11,23 +11,23 @@
   border-radius: 10px;
 }
 
-form h1{
+form h1 {
   font-size: xx-large;
   font-weight: bold;
   text-align: center;
   margin-bottom: 10px;
 }
 
-form p{
+form p {
   margin-bottom: 20px;
 }
 
-form label{
+form label {
   font-weight: bold;
   opacity: 0.7;
 }
 
-form input{
+form input {
   width: 100%;
   height: 30px;
   margin-top: 5px;
@@ -39,7 +39,7 @@ form input{
   transition: ease 0.4s;
 }
 
-form select{
+form select {
   width: 100%;
   height: 40px;
   margin-top: 5px;
@@ -50,13 +50,14 @@ form select{
   padding: 10px;
 }
 
-form input:focus, select:focus{
+form input:focus,
+select:focus {
   outline: 1px solid rgba(0, 119, 255, 0.8);
   border-radius: 15px;
   box-shadow: 0 0 8px rgba(0, 119, 255, 0.45);
 }
 
-form button{
+form button {
   width: 100%;
   padding: 10px;
   color: white;
@@ -67,7 +68,117 @@ form button{
   transition: ease 0.15s;
 }
 
-form button:hover{
+form button:hover {
   cursor: pointer;
   scale: 1.02;
+}
+
+.div-datosRegistro {
+  display: flex;
+  flex-wrap: wrap;
+  width: 600px;
+  max-width: 600px;
+  min-width: 300px;
+  height: auto;
+  padding: 15px;
+  box-shadow: 0px 5px 8px rgba(24, 132, 255, 0.35);
+  outline: 1px solid rgba(49, 145, 255, 0.2);
+  border-radius: 10px;
+  gap: 4px;
+
+  h1 {
+    width: 100%;
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    align-self: center;
+  }
+
+  hr {
+    width: 100%;
+  }
+
+  label {
+    font-weight: bold;
+    opacity: 0.7;
+  }
+
+  input {
+    width: 100%;
+    height: 30px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: none;
+    outline: 1px solid rgba(199, 199, 199, 0.8);
+    border-radius: 3px;
+    padding: 10px;
+    transition: ease 0.4s;
+  }
+
+  #label-codigo, #label-registro, #inp-codigo, #inp-registro{
+    width: 49%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  #label-semestre, #inp-semestre {
+    width: 25%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+  #label-carrera, #inp-carrera {
+    width: 73%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+
+  #label-telP, #label-telS, #inp-telP, #inp-telS{
+    width: 49%;
+    margin: auto;
+    margin-bottom: 10px;
+  }
+}
+
+.div-docRegistro {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 25px 25px;
+  width: 990px;
+  max-width: 990px;
+  min-width: 350px;
+  height: auto;
+  padding: 15px;
+  box-shadow: 0px 5px 8px rgba(24, 132, 255, 0.35);
+  outline: 1px solid rgba(49, 145, 255, 0.2);
+  border-radius: 10px;
+  gap: 4px;
+  overflow-x: auto;
+
+  h1 {
+    width: 100%;
+    font-size: xx-large;
+    font-weight: bold;
+    text-align: center;
+    margin-bottom: 10px;
+    align-self: center;
+  }
+
+  hr {
+    width: 100%;
+  }
+
+  table {
+    width: 100%;
+    min-width: 350px;
+  }
+
+  th {
+    background-color:rgba(49, 145, 255, 0.2);
+  }
+  td, th {
+    border: 1px solid rgba(49, 145, 255, 0.2);
+    text-align: center;
+    padding: 8px;
+  }
 }

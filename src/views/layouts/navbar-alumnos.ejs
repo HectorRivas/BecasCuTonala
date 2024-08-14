@@ -10,7 +10,7 @@
 
     <div class="nav-links">
       <ul>
-        <li><a href="#"><b>Ver registro</b></a></li>
+        <li><a href="/alumnos/verRegistro"><b>Ver registro</b></a></li>
         <li class="dropdown">
           <a class="drop-btn" href="javascript:void(0)"><b>Descargables</b></a>
           <div class="dropdown-content">
@@ -28,9 +28,9 @@
         <li class="dropdown-cuenta">
           <a href="#"><b>Cuenta</b></a>
           <div class="dropdown-content-cuenta">
-            <a href="#"><b>Usuario: </b></a>
+            <span><b>Usuario: <%= alumno.codigo %> </b></span>
             <hr>
-            <a id="btn-logout" href="/alumnos/login"><strong>Logout</strong></a>
+            <a id="btn-logout" href="/alumnos/logout"><strong>Logout</strong></a>
           </div>
         </li>
       </ul>

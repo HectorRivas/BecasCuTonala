@@ -5,6 +5,43 @@ const saltRounds = 8
 
 const sql = conexion
 
+// Metodos GET
+export function login (req, res) {
+  const { error } = req.query
+  console.log(req.query)
+  if (error) {
+    return res.render('admin/login', {
+      title: 'Login - Administrador',
+      alerta: true,
+      posicion: 'top-end',
+      icono: 'error',
+      mensaje: 'Código y/o contraseña incorrectos',
+      boton: false,
+      temporizador: 2000
+    })
+  } else {
+    return res.render('admin/login', {
+      title: 'Login - Administrador',
+      alerta: false,
+      posicion: '',
+      icono: '',
+      mensaje: '',
+      boton: true,
+      temporizador: 0
+    })
+  }
+}
+
+export function logout (req, res) {
+  req.session.destroy(error => {
+    if (error) {
+      return res.redirect('/admin/iniciar-sesion-administrador')
+    }
+    res.redirect('/admin/login')
+  })
+}
+
+// Metodos POST
 export function registrarAdmin (req, res) {
   const codigo = req.body.codigo
   const pass = req.body.password

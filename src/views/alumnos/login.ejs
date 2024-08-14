@@ -20,6 +20,8 @@
       </form>
     </div>
   </main>
+
+    <script src="/scripts/sweetalert2.all.min.js"></script>
     <script>
       const codigo = document.getElementById('codigo')
       const password = document.getElementById('password')
@@ -36,6 +38,23 @@
 
       codigo.addEventListener('input', checkInputs)
       password.addEventListener('input', checkInputs)
+
+      const alerta = <%= JSON.stringify(alerta) %>;
+      const posicion = '<%= posicion %>';
+      const icono = '<%= icono %>';
+      const mensaje = '<%= mensaje %>';
+      const boton = <%= boton %>;
+      const temporizador = <%= temporizador %>;
+
+      if (alerta) {
+        Swal.fire({
+          position: posicion,
+          icon: icono,
+          title: mensaje,
+          showConfirmButton: boton,
+          timer: temporizador
+        })
+      }
     </script>
 </body>
 

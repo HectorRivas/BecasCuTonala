@@ -6,11 +6,11 @@
 </head>
 
 <body>
-  <%- include('../partials/navbar') %>
+  <%- include('../layouts/navbar-alumnos') %>
   <main>
     <form action="/alumnos/subir-archivos" method="post" enctype="multipart/form-data" id="archivos">
       <div class="container">
-        <input type="text" name="codigo" id="codigo" value="<%= codigo %>">
+        <input type="text" name="codigo" id="codigo" value="<%= alumno.codigo %>">
         <div class="file">
           <div class="pdf-container">
             <canvas id="preview-ine"></canvas>

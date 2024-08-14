@@ -3,6 +3,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 import { adminRouter } from './routes/admin.js'
 import { alumnosRouter } from './routes/alumnos.js'
+import session from 'express-session'
 
 const app = express()
 
@@ -19,6 +20,13 @@ app.use(express.urlencoded({ extended: true }))
 
 // Middleware para analizar cuerpos de solicitudes en formato JSON
 app.use(express.json())
+
+app.use(session({
+  secret: 'Bl&U~r<aC:.#h(YvaOjjQ]S496£:<{`H4wa)^eDv4F<Kfh,/|i',
+  resave: false,
+  saveUninitialized: true,
+  cookie: { secure: false }
+}))
 
 app.use((req, res, next) => {
   console.log('Request URL:', req.originalUrl)

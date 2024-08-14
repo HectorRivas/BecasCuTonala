@@ -7,86 +7,87 @@
 </head>
 
 <body data-theme="light">
-  <%- include('../partials/navbar') %>
-    <main>
-      <div class="div-form">
-        <form action="/alumnos/enviar-formulario" method="post">
-          <h1>Formulario de solicitud</h1>
-          <p>Completa los datos solicitados a continuación. Es importante que los completes correctamente ya que esta es
-            la
-            información que se enviará en tu solicitud.</p>
-          <hr style="margin-bottom: 20px;">
-          <label for="codigo">Codigo*</label>
-          <input type="text" name="codigo" id="codigo" placeholder="Codigo Siiau*" pattern="[0-9]*" value="<%= codigo %>" required autofocus>
-          <label for="nombre">Nombre(s)*</label>
-          <input type="text" name="nombre" id="nombre" placeholder="Nombre(s)*" pattern="[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+"
-            title="Solo puedes ingresar letras" required>
-          <label for="apePaterno">Apellido paterno*</label>
-          <input type="text" name="apePaterno" id="apePaterno" placeholder="Apellido Paterno*"
-            pattern="[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+" title="Solo puedes ingresar letras" required>
-          <label for="apeMaterno">Apellido materno</label>
-          <input type="text" name="apeMaterno" id="apeMaterno" placeholder="Apellido Materno"
-            pattern="[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+" title="Solo puedes ingresar letras">
-          <label for="correo">Correo*</label>
-          <input type="email" name="correo" id="correo" placeholder="Correo institucional UDG"
-            pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}" required>
-          <label for="telPrincipal">Telefono de contacto*</label>
-          <input type="tel" name="telPrincipal" id="telPrincipal" placeholder="Telefono de contacto*" pattern="[0-9]*"
-            maxlength="10" minlength="10" required>
-          <label for="telSecundario">Telefono secundario (opcional)</label>
-          <input type="tel" name="telSecundario" id="telSecundario" placeholder="Telefono secundario" pattern="[0-9]*"
-            maxlength="10" minlength="10">
-          <label for="carrera">Carrera*</label>
-          <select class="form-select" id="carrera" name="carrera" required>
-            <option value="" selected>Seleccionar</option>
-            <option value="CPUA - LIC EN CONTADURIA PUBLICA">CPUA - LIC EN CONTADURIA PUBLICA</option>
-            <option value="DECH - ABOGADO">DECH - ABOGADO</option>
-            <option value="DERC - ABOGADO">DERC - ABOGADO</option>
-            <option value="DERR - ABOGADO">DERR - ABOGADO</option>
-            <option value="ICCO - ING EN CS COMPUTACIONALES">ICCO - ING EN CS COMPUTACIONALES
-            </option>
-            <option value="INAN - ING.EN NANOTECNOLOGIA">INAN - ING.EN NANOTECNOLOGIA</option>
-            <option value="INEL - INGENIERIA EN ENERGIA">INEL - INGENIERIA EN ENERGIA
-            </option>
-            <option value="INEN - ING EN ENERGIA">INEN - ING EN ENERGIA</option>
-            <option value="INGC - ING.EN CIENCIAS COMPUTACIONALES">INGC - ING.EN CIENCIAS COMPUTACIONALES
-            </option>
-            <option value="LCOP - LIC EN CONTADURIA PUBLICA">LCOP - LIC EN CONTADURIA PUBLICA</option>
-            <option value="LESL - LIC. EN ESTUDIOS LIBERALES">LESL - LIC. EN ESTUDIOS LIBERALES
-            </option>
-            <option value="LGER - LIC EN GERONTOLOGIA">LGER - LIC EN GERONTOLOGIA</option>
-            <option value="LHAR - LIC EN HISTORIA DEL ARTE">LHAR - LIC EN HISTORIA DEL ARTE
-            </option>
-            <option value="LHIA - LIC. EN HISTORIA DEL ARTE">LHIA - LIC. EN HISTORIA DEL ARTE
-            </option>
-            <option value="LIAN - LIC EN ADMI DE NEGOCIOS">LIAN - LIC EN ADMI DE NEGOCIOS
-            </option>
-            <option value="LIAR - LIC. EN ARQUITECTURA">LIAR - LIC. EN ARQUITECTURA</option>
-            <option value="LICF - LIC. EN CIENCIAS FORENSES">LICF - LIC. EN CIENCIAS FORENSES
-            </option>
-            <option value="LIDA - LIC. EN DISEÑO DE ARTESANIA">LIDA - LIC. EN DISEÑO DE ARTESANIA
-            </option>
-            <option value="LIEL - LIC EN ESTUDIOS LIBERALES">LIEL - LIC EN ESTUDIOS LIBERALES
-            </option>
-            <option value="LIHA - LIC EN HISTORIA DEL ARTE">LIHA - LIC EN HISTORIA DEL ARTE</option>
-            <option value="LISP - LIC EN SALUD PUBLICA">LISP - LIC EN SALUD PUBLICA
-            </option>
-            <option value="LNTO - LICENCIATURA EN NUTRICION">LNTO - LICENCIATURA EN NUTRICION</option>
-            <option value="MCPA - LIC MEDICO CIRUJANO Y PARTERO">MCPA - LIC MEDICO CIRUJANO Y PARTERO
-            </option>
-            <option value="MCPA - LIC MEDICO CIRUJANO Y PARTERO">MCPA - LIC MEDICO CIRUJANO Y PARTERO
-            </option>
-            <option value="MCPE - MEDICO CIRUJANO Y PARTERO">MCPE - MEDICO CIRUJANO Y PARTERO</option>
-          </select>
-          <label for="semestre">Semestre*</label>
-          <input type="number" name="semestre" id="semestre" placeholder="Semestre actual*" pattern="[0-9]*" max="20"
-            min="1" minlength="1" maxlength="2" required>
-          <button type="submit">Enviar</button>
-        </form>
-      </div>
-    </main>
-
-    <script src="/scripts/script.js"></script>
+    <%- include('../layouts/navbar-alumnos') %>
+      <main>
+        <div class="div-form">
+          <form action="/alumnos/enviar-formulario" method="post">
+            <h1>Formulario de solicitud</h1>
+            <p>Completa los datos solicitados a continuación. Es importante que los completes correctamente ya que esta
+              es
+              la
+              información que se enviará en tu solicitud.</p>
+            <hr style="margin-bottom: 20px;">
+            <label for="codigo">Codigo*</label>
+            <input type="text" name="codigo" id="codigo" placeholder="Codigo Siiau*" pattern="[0-9]*"
+              value="<%= alumno.codigo %>" required readonly>
+            <label for="nombre">Nombre(s)*</label>
+            <input type="text" name="nombre" id="nombre" placeholder="Nombre(s)*" pattern="[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+"
+              title="Solo puedes ingresar letras" required autofocus>
+            <label for="apePaterno">Apellido paterno*</label>
+            <input type="text" name="apePaterno" id="apePaterno" placeholder="Apellido Paterno*"
+              pattern="[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+" title="Solo puedes ingresar letras" required>
+            <label for="apeMaterno">Apellido materno</label>
+            <input type="text" name="apeMaterno" id="apeMaterno" placeholder="Apellido Materno"
+              pattern="[a-zA-ZÀ-ÿ\u00f1\u00d1\s]+" title="Solo puedes ingresar letras">
+            <label for="correo">Correo*</label>
+            <input type="email" name="correo" id="correo" placeholder="Correo institucional UDG"
+              pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,5}" required>
+            <label for="telPrincipal">Telefono de contacto*</label>
+            <input type="tel" name="telPrincipal" id="telPrincipal" placeholder="Telefono de contacto*" pattern="[0-9]*"
+              maxlength="10" minlength="10" required>
+            <label for="telSecundario">Telefono secundario (opcional)</label>
+            <input type="tel" name="telSecundario" id="telSecundario" placeholder="Telefono secundario" pattern="[0-9]*"
+              maxlength="10" minlength="10">
+            <label for="carrera">Carrera*</label>
+            <select class="form-select" id="carrera" name="carrera" required>
+              <option value="" selected>Seleccionar</option>
+              <option value="CPUA - LIC EN CONTADURIA PUBLICA">CPUA - LIC EN CONTADURIA PUBLICA</option>
+              <option value="DECH - ABOGADO">DECH - ABOGADO</option>
+              <option value="DERC - ABOGADO">DERC - ABOGADO</option>
+              <option value="DERR - ABOGADO">DERR - ABOGADO</option>
+              <option value="ICCO - ING EN CS COMPUTACIONALES">ICCO - ING EN CS COMPUTACIONALES
+              </option>
+              <option value="INAN - ING.EN NANOTECNOLOGIA">INAN - ING.EN NANOTECNOLOGIA</option>
+              <option value="INEL - INGENIERIA EN ENERGIA">INEL - INGENIERIA EN ENERGIA
+              </option>
+              <option value="INEN - ING EN ENERGIA">INEN - ING EN ENERGIA</option>
+              <option value="INGC - ING.EN CIENCIAS COMPUTACIONALES">INGC - ING.EN CIENCIAS COMPUTACIONALES
+              </option>
+              <option value="LCOP - LIC EN CONTADURIA PUBLICA">LCOP - LIC EN CONTADURIA PUBLICA</option>
+              <option value="LESL - LIC. EN ESTUDIOS LIBERALES">LESL - LIC. EN ESTUDIOS LIBERALES
+              </option>
+              <option value="LGER - LIC EN GERONTOLOGIA">LGER - LIC EN GERONTOLOGIA</option>
+              <option value="LHAR - LIC EN HISTORIA DEL ARTE">LHAR - LIC EN HISTORIA DEL ARTE
+              </option>
+              <option value="LHIA - LIC. EN HISTORIA DEL ARTE">LHIA - LIC. EN HISTORIA DEL ARTE
+              </option>
+              <option value="LIAN - LIC EN ADMI DE NEGOCIOS">LIAN - LIC EN ADMI DE NEGOCIOS
+              </option>
+              <option value="LIAR - LIC. EN ARQUITECTURA">LIAR - LIC. EN ARQUITECTURA</option>
+              <option value="LICF - LIC. EN CIENCIAS FORENSES">LICF - LIC. EN CIENCIAS FORENSES
+              </option>
+              <option value="LIDA - LIC. EN DISEÑO DE ARTESANIA">LIDA - LIC. EN DISEÑO DE ARTESANIA
+              </option>
+              <option value="LIEL - LIC EN ESTUDIOS LIBERALES">LIEL - LIC EN ESTUDIOS LIBERALES
+              </option>
+              <option value="LIHA - LIC EN HISTORIA DEL ARTE">LIHA - LIC EN HISTORIA DEL ARTE</option>
+              <option value="LISP - LIC EN SALUD PUBLICA">LISP - LIC EN SALUD PUBLICA
+              </option>
+              <option value="LNTO - LICENCIATURA EN NUTRICION">LNTO - LICENCIATURA EN NUTRICION</option>
+              <option value="MCPA - LIC MEDICO CIRUJANO Y PARTERO">MCPA - LIC MEDICO CIRUJANO Y PARTERO
+              </option>
+              <option value="MCPA - LIC MEDICO CIRUJANO Y PARTERO">MCPA - LIC MEDICO CIRUJANO Y PARTERO
+              </option>
+              <option value="MCPE - MEDICO CIRUJANO Y PARTERO">MCPE - MEDICO CIRUJANO Y PARTERO</option>
+            </select>
+            <label for="semestre">Semestre*</label>
+            <input type="number" name="semestre" id="semestre" placeholder="Semestre actual*" pattern="[0-9]*" max="20"
+              min="1" minlength="1" maxlength="2" required>
+            <button type="submit">Enviar</button>
+          </form>
+        </div>
+      </main>
+        <script src="/scripts/script.js"></script>
 </body>
 
 </html>

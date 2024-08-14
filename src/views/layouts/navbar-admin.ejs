@@ -1,0 +1,46 @@
+<nav class="nav">
+  <div class="logo">
+    <span title="Logo">BecasCUT</span>
+  </div>
+
+  <input type="checkbox" name="inp-toggle" id="inp-toggle">
+  <label for="inp-toggle" class="toggle">
+    <span class="icon-toggle"></span>
+  </label>
+
+  <div class="nav-links">
+    <ul>
+      <li><a href="#"><b>Ver registro</b></a></li>
+      <li class="dropdown">
+        <a class="drop-btn" href="javascript:void(0)"><b>Descargables</b></a>
+        <div class="dropdown-content">
+          <h3>Alimentos</h3>
+          <hr>
+          <a href="/downFormato">Formato de solicitud</a>
+          <a href="/downCovocatoriaAlimentos">Convocatoria alimentos</a>
+          <hr>
+          <h3>Becarios</h3>
+          <hr>
+          <a href="/downFormato">Formato de solicitud</a>
+          <a href="/downCovocatoriaAlimentos">Convocatoria alimentos</a>
+        </div>
+      </li>
+      <li class="dropdown-cuenta">
+        <a href="#"><b>Cuenta</b></a>
+        <div class="dropdown-content-cuenta">
+          <span><b>Usuario: <%= admin.correo %> </b></span>
+          <hr>
+          <a id="btn-logout" href="/admin/logout"><strong>Logout</strong></a>
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div class="tema">
+    <span class="icon-tema"></span>
+    <label class="switch">
+      <input type="checkbox" id="toggle-theme">
+      <span class="slider"></span>
+    </label>
+  </div>
+</nav>

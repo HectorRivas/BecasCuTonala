@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/styles/formulario.css">
+</head>
+
+<body data-theme="light">
+  <%- include('../layouts/navbar-alumnos') %>
+    <main>
+      <div class="div-datosRegistro">
+        <h1>Datos de registro</h1>
+        <hr style="margin-bottom: 20px;">
+        <label id="label-codigo" for="codigo">Codigo</label>
+        <label id="label-registro" for="codigo"># de registro</label>
+        <input id="inp-codigo" value="<%= alumno.codigo %>" readonly>
+        <input id="inp-registro" value="<%= user.idRegistro %>" readonly>
+        <label for="nombre">Nombre</label>
+        <input value="<%= user.nombre %> <%= user.apePaterno %> <%= user.apeMaterno %>" readonly>
+        <label for="correo">Correo</label>
+        <input type="email" name="correo" id="correo" value="<%= user.correo %>" readonly>
+        <label id="label-carrera">Carrera</label>
+        <label id="label-semestre">Semestre</label>
+        <input id="inp-carrera" value="<%= user.carrera %>" readonly>
+        <input id="inp-semestre" value="<%= user.semestre %>" readonly>
+        <label id="label-telP">Telefono de contacto</label>
+        <label id="label-telS">Telefono secundario</label>
+        <input id="inp-telP" value="<%= user.telPrincipal %>" readonly>
+        <input id="inp-telS" value="<%= user.telSecundario %>" readonly>
+      </div>
+
+      <div class="div-docRegistro">
+        <h1>Documentos de la solicitud</h1>
+        <hr>
+        <table>
+          <thead>
+            <tr>
+              <th>Documento</th>
+              <th>Fecha de revision</th>
+              <th>Fecha Lim Entrega</th>
+              <th>Observaciones</th>
+              <th>Estatus</th>
+            </tr>
+          </thead>
+          <% registros.forEach((doc)=>{ %>
+            <tbody>
+              <tr>
+                <td><%= doc.nombreArchivo %></td>
+                <td><%= doc.fechaRevision %></td>
+                <td><%= doc.fechaLimite %></td>
+                <td><%= doc.observaciones %></td>
+                <td>
+                  <button id="<%= user.idDocumentos %>" value="<%= user.validarArchivo %>"
+                  style="width: 100%;" data-bs-toggle="modal" data-bs-target="#actualizar"
+                  data-bs-whatever="<%= user.nombreArchivo %>">
+                  <%= user.validarArchivo %></button>
+                </td>
+              </tr>
+            </tbody>
+          <% }) %>
+        </table>
+      </div>
+    </main>
+    <script src="/scripts/script.js"></script>
+</body>
+
+</html>
