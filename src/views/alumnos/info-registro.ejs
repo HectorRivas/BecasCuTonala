@@ -4,6 +4,58 @@
 <head>
   <%- include('../partials/head') %>
     <link rel="stylesheet" href="/styles/formulario.css">
+    <script type="module" src="/scripts/script.js"></script>
+    <script type="module" src="/scripts/info-registro.js"></script>
+    <% registros.forEach((doc)=> { %>
+      <script type="module">
+        let btn = document.getElementById('<%= doc.idDocumentos %>')
+        if (btn) {
+          switch (btn.value) {
+            case 'PENDIENTE':
+              btn.setAttribute('disabled', '')
+              break;
+            case 'INCORRECTO':
+              btn.style.backgroundColor = 'rgb(253 22 22 / 80%)'
+              btn.style.color = 'white';
+              btn.setAttribute('disabled', '')
+              break;
+            case 'CORRECTO':
+              btn.style.backgroundColor = 'rgb(0 200 50 / 80%)'
+              btn.style.color = 'white';
+              btn.setAttribute('disabled', '')
+              break;
+            case 'ACTUALIZADO':
+              btn.style.backgroundColor = 'rgb(31 114 216 / 80%)'
+              btn.style.color = 'white';
+              btn.setAttribute('disabled', '')
+              break;
+            case 'ACTUALIZAR':
+              btn.style.backgroundColor = 'rgb(31 114 216)'
+              btn.style.color = 'white'
+              break;
+          }
+        }
+
+        (function () {
+          var updateButton = document.getElementById("<%= doc.idDocumentos %>")
+          console.log(updateButton)
+          var cancelButton = document.getElementById("cancel")
+          var modalDialog = document.getElementById("modalDialog")
+
+          // Update button opens a modal dialog
+          updateButton.addEventListener("click", function () {
+            modalDialog.showModal()
+            document.getElementById("idDocumentos").value = updateButton.id
+            document.getElementById("documento").value = updateButton.getAttribute("data-bs-whatever")
+          })
+
+          // Form cancel button closes the dialog box
+          cancelButton.addEventListener("click", function () {
+            modalDialog.close()
+          })
+        })()
+      </script>
+      <% }) %>
 </head>
 
 <body data-theme="light">
@@ -12,22 +64,22 @@
       <div class="div-datosRegistro">
         <h1>Datos de registro</h1>
         <hr style="margin-bottom: 20px;">
-        <label id="label-codigo" for="codigo">Codigo</label>
-        <label id="label-registro" for="codigo"># de registro</label>
-        <input id="inp-codigo" value="<%= alumno.codigo %>" readonly>
-        <input id="inp-registro" value="<%= user.idRegistro %>" readonly>
+        <label class="label-codigo" for="codigo">Codigo</label>
+        <label class="label-registro" for="codigo"># de registro</label>
+        <input class="inp-codigo" value="<%= alumno.codigo %>" readonly>
+        <input class="inp-registro" value="<%= user.idRegistro %>" readonly>
         <label for="nombre">Nombre</label>
         <input value="<%= user.nombre %> <%= user.apePaterno %> <%= user.apeMaterno %>" readonly>
         <label for="correo">Correo</label>
         <input type="email" name="correo" id="correo" value="<%= user.correo %>" readonly>
-        <label id="label-carrera">Carrera</label>
-        <label id="label-semestre">Semestre</label>
-        <input id="inp-carrera" value="<%= user.carrera %>" readonly>
-        <input id="inp-semestre" value="<%= user.semestre %>" readonly>
-        <label id="label-telP">Telefono de contacto</label>
-        <label id="label-telS">Telefono secundario</label>
-        <input id="inp-telP" value="<%= user.telPrincipal %>" readonly>
-        <input id="inp-telS" value="<%= user.telSecundario %>" readonly>
+        <label class="label-carrera">Carrera</label>
+        <label class="label-semestre">Semestre</label>
+        <input class="inp-carrera" value="<%= user.carrera %>" readonly>
+        <input class="inp-semestre" value="<%= user.semestre %>" readonly>
+        <label class="label-telP">Telefono de contacto</label>
+        <label class="label-telS">Telefono secundario</label>
+        <input class="inp-telP" value="<%= user.telPrincipal %>" readonly>
+        <input class="inp-telS" value="<%= user.telSecundario %>" readonly>
       </div>
 
       <div class="div-docRegistro">
@@ -46,23 +98,59 @@
           <% registros.forEach((doc)=>{ %>
             <tbody>
               <tr>
-                <td><%= doc.nombreArchivo %></td>
-                <td><%= doc.fechaRevision %></td>
-                <td><%= doc.fechaLimite %></td>
-                <td><%= doc.observaciones %></td>
                 <td>
-                  <button id="<%= user.idDocumentos %>" value="<%= user.validarArchivo %>"
-                  style="width: 100%;" data-bs-toggle="modal" data-bs-target="#actualizar"
-                  data-bs-whatever="<%= user.nombreArchivo %>">
-                  <%= user.validarArchivo %></button>
+                  <%= doc.nombreArchivo %>
+                </td>
+                <td>
+                  <%= doc.fechaRevision %>
+                </td>
+                <td>
+                  <%= doc.fechaLimite %>
+                </td>
+                <td>
+                  <%= doc.observaciones %>
+                </td>
+                <td>
+                  <button id="<%= doc.idDocumentos %>" value="<%= doc.validarArchivo %>" style="width: 100%;"
+                    data-bs-toggle="modal" data-bs-target="#actualizar" data-bs-whatever="<%= doc.nombreArchivo %>">
+                    <%= doc.validarArchivo %>
+                  </button>
                 </td>
               </tr>
             </tbody>
-          <% }) %>
+            <dialog class="modal" id="modalDialog">
+              <div class="formulario">
+                <h1>Actualizar documento</h1>
+                <form id="form" method="post" action="/alumnos/updateFile" enctype="multipart/form-data">
+                  <hr>
+                  <div class="cod">
+                    <label for="codigo">Codigo</label>
+                    <input type="text" name="codigo" id="codigo" value="<%= alumno.codigo %>" readonly>
+                  </div>
+                  <div class="idDoc">
+                    <label for="idDocumentos"># Doc</label>
+                    <input type="text" name="idDocumentos" id="idDocumentos" readonly>
+                  </div>
+                  <div class="doc">
+                    <label for="documento">Documento</label>
+                    <input type="text" name="documento" id="documento" readonly>
+                  </div>
+                  <div class="newDoc">
+                    <label for="nuevoDocumento">Nuevo documento</label>
+                    <input type="file" name="nuevoDocumento" id="nuevoDocumento" accept=".pdf" required>
+                  </div>
+                  <footer>
+                    <button class="cancel" id="cancel" type="reset">Cancelar</button>
+                    <button class="confirm" type="submit">Actualizar</button>
+                  </footer>
+                </form>
+              </div>
+            </dialog>
+            <% }) %>
         </table>
       </div>
     </main>
-    <script src="/scripts/script.js"></script>
+
 </body>
 
 </html>

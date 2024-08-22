@@ -1,3 +1,4 @@
+/* eslint-disable camelcase */
 import conexion from '../models/mysql-config.js'
 import bcrypt from 'bcrypt'
 import multer, { diskStorage as _diskStorage } from 'multer'
@@ -56,12 +57,9 @@ export async function verRegistro (req, res) {
   }
   const select = 'SELECT *, date_format(fechaRevision, "%d-%m-%Y") as fechaRevision, date_format(fechaLimite, "%d-%m-%Y") as fechaLimite FROM documentosbeca, datosregistrobeca WHERE datosregistrobeca_codigo = codigo AND codigo = ?'
   const [registro] = await sql.query(select, alumno.codigo)
-  console.log(registro)
   if (registro === 0) {
-    console.log('Aun no hay registros')
     return res.render('alumnos/inicio', { title: 'Inicio', alumno })
   } else {
-    console.log('Aqui se vera el registro')
     return res.render('alumnos/info-registro', { title: 'Registro - Beca', alumno, registros: registro, user: registro[0] })
   }
 }
@@ -72,6 +70,14 @@ export function formRegistrarAlumno (res) {
   } catch (error) {
     console.log('Error:', error)
   }
+}
+
+export function descargarFormatoSolicitud (req, res) {
+  res.download('src/public/archivos/formato_solicitud_programa_de_apoyo_alimentario_2024-b_1.docx')
+}
+
+export function descargarConvocatoriaAlimentos (req, res) {
+  res.download('src/public/archivos/convocatoria_programa_alimentos_2024-b_10_07_24_final_2_0.pdf')
 }
 
 // Metodos POST
@@ -225,7 +231,7 @@ const diskStorage = _diskStorage({
   }
 })
 
-export const uploadArchivos = multer({ storage: diskStorage }).fields([
+export const uploadFiles = multer({ storage: diskStorage }).fields([
   { name: 'ine', maxCount: 1 },
   { name: 'curp', maxCount: 1 },
   { name: 'domicilio', maxCount: 1 },
@@ -235,7 +241,7 @@ export const uploadArchivos = multer({ storage: diskStorage }).fields([
   { name: 'fiscal', maxCount: 1 }
 ])
 
-export async function mysqlUploadArchivos (req, res) {
+export async function mysqlUploadFiles (req, res) {
   const alumno = req.session.alumno
   if (!alumno) {
     console.log('Sesión caducada')
@@ -275,5 +281,51 @@ export async function mysqlUploadArchivos (req, res) {
   } catch (error) {
     console.error('Error al cargar documentos:', error.message)
     return res.status(500).render('alumnos/inicio', { title: 'Inicio', alumno })
+  }
+}
+
+const diskStorageUpdate = _diskStorage({
+  destination: (req, file, cb) => {
+    const nombre = req.body.codigo
+    const path = join(__dirname, `../Documentos/${nombre}`)
+    mkdirSync(path, { recursive: true })
+    console.log(nombre)
+    cb(null, path)
+  },
+  filename: (req, file, cb) => {
+    const nombreArchivo = req.body.codigo
+    cb(null, `(Actualizado) ${nombreArchivo} - ${file.originalname}`)
+  }
+})
+
+export const updateFile = multer({ storage: diskStorageUpdate }).single('nuevoDocumento')
+
+export async function mysqlUpdateFiles (req, res) {
+  const sqlUpdateDoc = 'UPDATE documentosbeca SET ? WHERE datosregistrobeca_codigo = ? AND idDocumentos = ?'
+  const sqlUpdateDatos = 'UPDATE datosregistrobeca SET estatus = "PENDIENTE" where codigo = ?'
+  const fecha = new Date()
+  const dia = fecha.getDate()
+  const mes = fecha.getMonth() + 1
+  const anio = fecha.getFullYear()
+  const fechaActualizacion = `${anio}-${mes}-${dia}`
+  const idDocumentos = req.body.idDocumentos
+  const datosregistrobeca_codigo = req.body.codigo
+  const codigo = req.body.codigo
+  const nombreArchivo = req.file.filename
+  const tipoArchivo = req.file.mimetype
+  const validarArchivo = 'ACTUALIZADO'
+  const data = { nombreArchivo, tipoArchivo, validarArchivo, fechaActualizacion }
+
+  try {
+    await sql.query(sqlUpdateDoc, [data, datosregistrobeca_codigo, idDocumentos])
+    console.log('Documento actualizado con éxito!')
+
+    await sql.query(sqlUpdateDatos, [codigo])
+    console.log('Estatus actualizado con éxito!')
+
+    return res.redirect('/alumnos/verRegistro')
+  } catch (error) {
+    console.error('Error al actualizar:', error)
+    return res.status(500).send('Error al actualizar')
   }
 }

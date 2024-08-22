@@ -1,6 +1,7 @@
-  <nav class="nav">
+  <script type="module" src="/scripts/navbar.js"></script>
+  <nav class="navbar">
     <div class="logo">
-      <span title="Logo">BecasCUT</span>
+      <label><strong>BecasCUT</strong></label>
     </div>
 
     <input type="checkbox" name="inp-toggle" id="inp-toggle">
@@ -8,39 +9,71 @@
       <span class="icon-toggle"></span>
     </label>
 
-    <div class="nav-links">
+    <div class="links">
       <ul>
-        <li><a href="/alumnos/verRegistro"><b>Ver registro</b></a></li>
-        <li class="dropdown">
-          <a class="drop-btn" href="javascript:void(0)"><b>Descargables</b></a>
-          <div class="dropdown-content">
-            <h3>Alimentos</h3>
-            <hr>
-            <a href="/downFormato">Formato de solicitud</a>
-            <a href="/downCovocatoriaAlimentos">Convocatoria alimentos</a>
-            <hr>
-            <h3>Becarios</h3>
-            <hr>
-            <a href="/downFormato">Formato de solicitud</a>
-            <a href="/downCovocatoriaAlimentos">Convocatoria alimentos</a>
+        <li><a href="/alumnos/verRegistro"><strong>Ver registro</strong></a></li>
+        <li>
+          <div class="dropdown">
+            <button class="dropbtn"><strong>Descargables</strong></button>
+            <div class="dropdown-content">
+              <h3>Alimentos</h3>
+              <hr>
+              <a href="/alumnos/descargarFormatoSolicitud">Formato de solicitud</a>
+              <a href="/alumnos/descargarCovocatoriaAlimentos">Convocatoria alimentos</a>
+              <hr>
+              <h3>Becarios</h3>
+              <hr>
+              <a href="#">Formato de solicitud</a>
+              <a href="#">Convocatoria alimentos</a>
+            </div>
           </div>
         </li>
-        <li class="dropdown-cuenta">
-          <a href="#"><b>Cuenta</b></a>
-          <div class="dropdown-content-cuenta">
-            <span><b>Usuario: <%= alumno.codigo %> </b></span>
-            <hr>
-            <a id="btn-logout" href="/alumnos/logout"><strong>Logout</strong></a>
+        <li>
+          <div class="dropdown">
+            <button class="dropbtn"><strong>Cuenta</strong></button>
+            <div class="dropdown-content">
+              <span><strong>Usuario: <%= alumno.codigo %> </strong></span>
+              <hr>
+              <a id="btn-logout" href="/alumnos/logout"><strong>Logout</strong></a>
+            </div>
           </div>
         </li>
       </ul>
     </div>
 
-    <div class="tema">
-      <span class="icon-tema"></span>
-      <label class="switch">
-        <input type="checkbox" id="toggle-theme">
-        <span class="slider"></span>
-      </label>
+    <div class="ayuda">
+      <a href="#about">Ayuda</a>
+    </div>
+
+    <div class="drop-links">
+      <ul>
+        <li><a href="/alumnos/verRegistro"><strong>Ver registro</strong></a></li>
+        <li>
+          <div class="dropdown">
+            <button class="dropbtn"><strong>Descargables</strong></button>
+            <div class="dropdown-content">
+              <h3>Alimentos</h3>
+              <hr>
+              <a href="/downFormato">Formato de solicitud</a>
+              <a href="/downCovocatoriaAlimentos">Convocatoria alimentos</a>
+              <hr>
+              <h3>Becarios</h3>
+              <hr>
+              <a href="/downFormato">Formato de solicitud</a>
+              <a href="/downCovocatoriaAlimentos">Convocatoria alimentos</a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="dropdown">
+            <button class="dropbtn"><strong>Cuenta</strong></button>
+            <div class="dropdown-content">
+              <span><strong>Usuario: <%= alumno.codigo %> </strong></span>
+              <hr>
+              <a id="btn-logout" href="/alumnos/logout"><strong>Logout</strong></a>
+            </div>
+          </div>
+        </li>
+      </ul>
     </div>
   </nav>
