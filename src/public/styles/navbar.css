@@ -7,27 +7,6 @@
   box-sizing: border-box;
 }
 
-:root {
-  color-scheme: ligth;
-}
-
-body {
-  background-color: var(--background-color, rgb(27, 27, 27));
-  color: var(--text-color, white);
-  transition: background-color 0.5s, color 0.5s;
-}
-
-[data-theme="light"] {
-  --background-color: white;
-  --text-color: black;
-  color-scheme: light;
-}
-
-[data-theme="dark"] {
-  --background-color: rgb(27, 27, 27);
-  --text-color: white;
-  color-scheme: dark;
-}
 
 .navbar {
   display: flex;

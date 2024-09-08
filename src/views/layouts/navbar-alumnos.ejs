@@ -1,79 +1,107 @@
-  <script type="module" src="/scripts/navbar.js"></script>
-  <nav class="navbar">
-    <div class="logo">
-      <label><strong>BecasCUT</strong></label>
-    </div>
-
-    <input type="checkbox" name="inp-toggle" id="inp-toggle">
-    <label for="inp-toggle" class="toggle">
-      <span class="icon-toggle"></span>
-    </label>
-
-    <div class="links">
-      <ul>
-        <li><a href="/alumnos/verRegistro"><strong>Ver registro</strong></a></li>
-        <li>
-          <div class="dropdown">
-            <button class="dropbtn"><strong>Descargables</strong></button>
-            <div class="dropdown-content">
-              <h3>Alimentos</h3>
-              <hr>
-              <a href="/alumnos/descargarFormatoSolicitud">Formato de solicitud</a>
-              <a href="/alumnos/descargarCovocatoriaAlimentos">Convocatoria alimentos</a>
-              <hr>
-              <h3>Becarios</h3>
-              <hr>
-              <a href="#">Formato de solicitud</a>
-              <a href="#">Convocatoria alimentos</a>
+<script type="module" src="/scripts/navbar.js"></script>
+<nav class="bg-gray-800">
+  <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+    <div class="relative flex h-16 items-center justify-between">
+      <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
+        <button id="mobile-button"
+          class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+          aria-controls="mobile-menu" aria-expanded="false">
+          <img src="/img/menu-white32px.png" alt="icon menu">
+        </button>
+      </div>
+      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div class="flex flex-shrink-0 items-center">
+          <label class="text-white font-bold" for="logo">BecasCUT</label>
+        </div>
+        <div class="hidden sm:ml-6 sm:block">
+          <div class="flex space-x-4">
+            <a href="/alumnos/inicio"
+              class="rounded-md px-3 py-2 text-sm font-bold text-gray-300 hover:bg-gray-700 hover:text-white"
+              aria-current="page">Inicio</a>
+            <div class="dropdown relative">
+              <button
+                class="dropbtn rounded-md px-3 py-2 text-sm font-bold text-gray-300 hover:bg-gray-700 hover:text-white">Descargables</button>
+              <div
+                class="dropdown-content max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out absolute z-10 mt-1 w-[200px] origin-top-right rounded-md bg-gray-800 py-1 shadow-lg ring-1 ring-black ring-opacity-5">
+                <h3 class="text-white text-center font-bold">Alimentos</h3>
+                <hr>
+                <a href="/alumnos/descargarFormatoSolicitud"
+                  class="block px-4 py-2 text-md text-left text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-300">Formato
+                  de solicitud</a>
+                <a href="/alumnos/descargarCovocatoriaAlimentos"
+                  class="block px-4 py-2 text-md text-left text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-300">Convocatoria
+                  alimentos</a>
+                <hr>
+                <h3 class="text-white text-center font-bold">Becarios</h3>
+                <hr>
+                <a href="#"
+                  class="block px-4 py-2 text-md text-left text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-300">Formato
+                  de solicitud</a>
+                <a href="#"
+                  class="block px-4 py-2 text-md text-left text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-300">Convocatoria
+                  becarios</a>
+              </div>
             </div>
+            <a href="#"
+              class="rounded-md px-3 py-2 text-sm font-medium text-gray-300 hover:bg-gray-700 hover:text-white">Ayuda</a>
           </div>
-        </li>
-        <li>
-          <div class="dropdown">
-            <button class="dropbtn"><strong>Cuenta</strong></button>
-            <div class="dropdown-content">
-              <span><strong>Usuario: <%= alumno.codigo %> </strong></span>
-              <hr>
-              <a id="btn-logout" href="/alumnos/logout"><strong>Logout</strong></a>
-            </div>
+        </div>
+      </div>
+      <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
+        <div class="dropdown">
+          <button type="button" class="dropbtn relative flex rounded-full bg-black text-sm hover:scale-105"
+            id="user-menu-button">
+            <img class="h-8 w-8 rounded-full" src="/img/user-white32px.png" alt="user icon">
+          </button>
+          <div
+            class="dropdown-content max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-gray-800 py-1 shadow-lg ring-1 ring-black ring-opacity-5">
+            <span class="p-4 py-2 text-md font-bold text-white">Usuario: <%= alumno.codigo %></span>
+            <a href="/alumnos/logout"
+              class="block px-4 py-2 text-md font-bold text-red-600 text-center hover:bg-gray-700 transition-colors duration-300"
+              id="user-menu-item-2">Cerrar sesión</a>
           </div>
-        </li>
-      </ul>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <div class="ayuda">
-      <a href="#about">Ayuda</a>
+  <div id="mobile-menu" class="max-h-0 overflow-hidden transition-[max-height] duration-300 ease-in-out sm:hidden">
+    <div class="space-y-1 px-2 pb-3 pt-2">
+      <a href="/alumnos/inicio"
+        class="block rounded-md px-3 py-2 text-md font-bold text-white hover:bg-gray-700 hover:text-white"
+        aria-current="page">Inicio</a>
+      <div class="flex flex-col">
+        <button id="btn-drop-secundary"
+          class="grow text-left rounded-md px-3 py-2 text-md font-bold text-white hover:bg-gray-700 hover:text-white">
+          Descargables
+        </button>
+        <div id="dropdown-content-secundary" class="max-h-0 transition-[max-height] duration-300 ease-in-out" hidden>
+          <ul>
+            <li>
+              <a href="/alumnos/descargarFormatoSolicitud"
+                class="block px-4 py-2 text-md text-left text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-300">Formato
+                de solicitud alimentos</a>
+            </li>
+            <li>
+              <a href="/alumnos/descargarCovocatoriaAlimentos"
+                class="block px-4 py-2 text-md text-left text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-300">Convocatoria
+                alimentos</a>
+            </li>
+            <li>
+              <a href="#"
+                class="block px-4 py-2 text-md text-left text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-300">Formato
+                de solicitud becarios</a>
+            </li>
+            <li>
+              <a href="#"
+                class="block px-4 py-2 text-md text-left text-gray-300 hover:bg-gray-700 hover:text-white transition-colors duration-300">Convocatoria
+                becarios</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <a href="#"
+        class="block rounded-md px-3 py-2 text-md font-medium text-white hover:bg-gray-700 hover:text-white">Ayuda</a>
     </div>
-
-    <div class="drop-links">
-      <ul>
-        <li><a href="/alumnos/verRegistro"><strong>Ver registro</strong></a></li>
-        <li>
-          <div class="dropdown">
-            <button class="dropbtn"><strong>Descargables</strong></button>
-            <div class="dropdown-content">
-              <h3>Alimentos</h3>
-              <hr>
-              <a href="/downFormato">Formato de solicitud</a>
-              <a href="/downCovocatoriaAlimentos">Convocatoria alimentos</a>
-              <hr>
-              <h3>Becarios</h3>
-              <hr>
-              <a href="/downFormato">Formato de solicitud</a>
-              <a href="/downCovocatoriaAlimentos">Convocatoria alimentos</a>
-            </div>
-          </div>
-        </li>
-        <li>
-          <div class="dropdown">
-            <button class="dropbtn"><strong>Cuenta</strong></button>
-            <div class="dropdown-content">
-              <span><strong>Usuario: <%= alumno.codigo %> </strong></span>
-              <hr>
-              <a id="btn-logout" href="/alumnos/logout"><strong>Logout</strong></a>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </nav>
+  </div>
+</nav>

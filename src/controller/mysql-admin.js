@@ -41,6 +41,21 @@ export function logout (req, res) {
   })
 }
 
+export async function inicio (req, res) {
+  const admin = req.session.admin
+  if (!admin) {
+    console.log('Sesion caducada')
+    return res.redirect('/admin/login')
+  }
+  const select = 'SELECT *, date_format(fechaRegistro, "%d-%m-%Y") as fechaRegistro FROM datos_beca_alimentos'
+  const [result] = await sql.query(select)
+  if (result.length >= 1) {
+    console.log('Datos encontrados:', result)
+    return res.render('admin/inicio', { title: 'Inicio', admin, datos: result })
+  }
+  return res.render('admin/inicio', { title: 'Inicio', admin, datos: false })
+}
+
 // Metodos POST
 export function registrarAdmin (req, res) {
   const codigo = req.body.codigo
@@ -85,8 +100,19 @@ export async function iniciarSesion (req, res) {
     const coincide = await bcrypt.compare(password, claveHash)
 
     if (coincide) {
+      req.session.admin = admin
       console.log('Login exitoso')
-      return res.render('admin/inicio', { title: 'Inicio - Administrador', admin })
+      if (!admin) {
+        console.log('Sesion caducada')
+        return res.redirect('/admin/login')
+      }
+      const select = 'SELECT *, date_format(fechaRegistro, "%d-%m-%Y") as fechaRegistro FROM datos_beca_alimentos'
+      const [result] = await sql.query(select)
+      if (result.length >= 1) {
+        console.log('Datos encontrados:', result)
+        return res.render('admin/inicio', { title: 'Inicio - Administrador', admin, datos: result })
+      }
+      return res.render('admin/inicio', { title: 'Inicio - Administrador', admin, datos: false })
     } else {
       console.log('Código y/o contraseña incorrectos')
       return res.redirect('/admin/login?error=1')

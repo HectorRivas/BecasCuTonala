@@ -116,31 +116,50 @@ form button:hover {
     transition: ease 0.4s;
   }
 
-  .label-codigo, .label-registro, .inp-codigo, .inp-registro{
+  .label-codigo,
+  .label-registro,
+  .inp-codigo,
+  .inp-registro {
     width: 49%;
     margin: auto;
     margin-bottom: 10px;
   }
 
-  .label-semestre, .inp-semestre {
+  .label-semestre,
+  .inp-semestre {
     width: 25%;
     margin: auto;
     margin-bottom: 10px;
   }
-  .label-carrera, .inp-carrera {
+
+  .label-carrera,
+  .inp-carrera {
     width: 73%;
     margin: auto;
     margin-bottom: 10px;
   }
 
-  .label-telP, .label-telS, .inp-telP, .inp-telS{
+  .label-telP,
+  .label-telS,
+  .inp-telP,
+  .inp-telS {
     width: 49%;
     margin: auto;
     margin-bottom: 10px;
   }
 }
 
-.div-docRegistro {
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 25px 25px;
+}
+
+.div-docRegistro,
+.becas-tramitadas {
   display: flex;
   flex-wrap: wrap;
   margin: 25px 25px;
@@ -174,23 +193,27 @@ form button:hover {
   }
 
   th {
-    background-color:rgba(49, 145, 255, 0.2);
+    background-color: rgba(49, 145, 255, 0.2);
   }
-  td, th {
+
+  td,
+  th {
     border: 1px solid rgba(49, 145, 255, 0.2);
     text-align: center;
     padding: 8px;
   }
 
-  button{
+  button {
     border: none;
     border-radius: 5px;
     padding: 10px;
+
     &:hover {
       cursor: pointer;
       scale: 1.025;
     }
-    &:disabled{
+
+    &:disabled {
       cursor: default;
       scale: 1;
     }

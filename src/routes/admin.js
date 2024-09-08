@@ -4,10 +4,6 @@ import * as queryAdmin from '../controller/mysql-admin.js'
 export const adminRouter = Router()
 
 // Peticiones GET
-adminRouter.get('/login', queryAdmin.login)
-
-adminRouter.get('/logout', queryAdmin.logout)
-
 adminRouter.get('/registrar-admin', (req, res) => {
   try {
     res.render('admin/registrar-admin', { title: 'Registrar administrador' })
@@ -15,6 +11,12 @@ adminRouter.get('/registrar-admin', (req, res) => {
     console.log('Error:', error)
   }
 })
+
+adminRouter.get('/login', queryAdmin.login)
+
+adminRouter.get('/logout', queryAdmin.logout)
+
+adminRouter.get('/inicio', queryAdmin.inicio)
 
 // Peticiones POST
 adminRouter.post('/registrar', queryAdmin.registrarAdmin)

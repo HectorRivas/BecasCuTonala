@@ -1,31 +1,63 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // Seleccionamos todos los dropdowns
   const dropdowns = document.querySelectorAll('.dropdown')
+  console.log(dropdowns)
 
   dropdowns.forEach(dropdown => {
     const button = dropdown.querySelector('.dropbtn')
+    console.log(button)
     const content = dropdown.querySelector('.dropdown-content')
+    console.log(content)
 
     button.addEventListener('click', (event) => {
-      // Evitar que el click se propague y cierre el dropdown inmediatamente
       event.stopPropagation()
 
-      // Cerrar todos los demás dropdowns
-      document.querySelectorAll('.dropdown-content').forEach(openDropdown => {
-        if (openDropdown !== content) {
-          openDropdown.classList.remove('show')
+      // Cierra otros dropdowns
+      dropdowns.forEach(otherDropdown => {
+        const otherContent = otherDropdown.querySelector('.dropdown-content')
+        if (otherContent !== content) {
+          otherContent.style.maxHeight = '0'
         }
       })
 
-      // Alternar el dropdown actual
-      content.classList.toggle('show')
+      // Ajuste dinámico de la altura máxima
+      if (content.style.maxHeight === '0px' || !content.style.maxHeight) {
+        content.style.maxHeight = content.scrollHeight + 'px' // Expande el contenido
+      } else {
+        content.style.maxHeight = '0' // Contrae el contenido
+      }
     })
   })
 
-  // Cerrar el dropdown si se hace clic fuera de él
   document.addEventListener('click', () => {
-    document.querySelectorAll('.dropdown-content').forEach(content => {
-      content.classList.remove('show')
+    dropdowns.forEach(dropdown => {
+      const content = dropdown.querySelector('.dropdown-content')
+      content.style.maxHeight = '0' // Cierra todos los dropdowns al hacer clic fuera
     })
+  })
+
+  const menuButton = document.getElementById('mobile-button')
+  const mobileMenu = document.getElementById('mobile-menu')
+
+  menuButton.addEventListener('click', (event) => {
+    event.stopPropagation()
+    if (mobileMenu.style.maxHeight === '0px' || mobileMenu.style.maxHeight === '') {
+      mobileMenu.style.maxHeight = '600px' // Ajusta la altura según sea necesario
+    } else {
+      mobileMenu.style.maxHeight = '0px'
+    }
+  })
+
+  const btnDropSecundary = document.getElementById('btn-drop-secundary')
+  const dropSecundary = document.getElementById('dropdown-content-secundary')
+
+  btnDropSecundary.addEventListener('click', (event) => {
+    event.stopPropagation()
+    if (dropSecundary.style.maxHeight === '0px' || dropSecundary.style.maxHeight === '') {
+      dropSecundary.style.maxHeight = '200px' // Ajusta la altura según sea necesario
+      dropSecundary.removeAttribute('hidden')
+    } else {
+      dropSecundary.style.maxHeight = '0px'
+      dropSecundary.setAttribute('hidden', true)
+    }
   })
 })

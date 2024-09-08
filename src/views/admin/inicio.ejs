@@ -3,16 +3,92 @@
 
 <head>
   <%- include('../partials/head') %>
-    <link rel="stylesheet" href="/styles/formulario.css">
+    <link rel="stylesheet" href="/styles/output.css">
 </head>
+<% datos.forEach((info)=> { %>
+  <script type="module">
+    let btn = document.getElementById('<%= info.idRegistro %>')
+    if (btn) {
+      switch (btn.value) {
+        case 'PENDIENTE':
+          btn.style.backgroundColor = 'rgb(31 114 216)'
+          btn.style.color = 'white'
+          break;
+        case 'INCORRECTO':
+          btn.style.backgroundColor = 'rgb(253 22 22 / 80%)'
+          btn.style.color = 'white';
+          btn.setAttribute('disabled', '')
+          break;
+        case 'CORRECTO':
+          btn.style.backgroundColor = 'rgb(0 200 50 / 80%)'
+          btn.style.color = 'white';
+          btn.setAttribute('disabled', '')
+          break;
+        case 'ACTUALIZADO':
+          btn.style.backgroundColor = 'rgb(31 114 216 / 80%)'
+          btn.style.color = 'white';
+          btn.setAttribute('disabled', '')
+          break;
+        case 'ACTUALIZAR':
+          btn.style.backgroundColor = 'rgb(31 114 216)'
+          btn.style.color = 'white'
+          break;
+      }
+    }
+  </script>
+  <% }) %>
 
-<body data-theme="light">
-  <%- include('../layouts/navbar-admin') %>
-    <main>
-      <h1>Bienvenido <%= admin.correo %></h1>
-    </main>
-
-    <script src="/scripts/script.js"></script>
-</body>
+    <body>
+      <%- include('../layouts/navbar-admin') %>
+        <main class="flex flex-wrap relative max-w-6xl m-auto h-auto top-24 justify-center">
+          <h1 class="text-3xl w-11/12 m-auto text-center">Registros</h1>
+          <section
+            class="overflow-x-auto rounded-xl max-w-full w-full mb-5 p-2 text-center shadow-md shadow-blue-500/50 bg-gray-100/60">
+            <table class="min-w-full table-auto m-auto">
+              <thead>
+                <tr>
+                  <th class="whitespace-nowrap border border-blue-400 bg-blue-200 p-1"># de registro</th>
+                  <th class="whitespace-nowrap border border-blue-400 bg-blue-200 p-1">Código</th>
+                  <th class="whitespace-nowrap border border-blue-400 bg-blue-200 p-1">Nombre</th>
+                  <th class="whitespace-nowrap border border-blue-400 bg-blue-200 p-1">Correo</th>
+                  <th class="whitespace-nowrap border border-blue-400 bg-blue-200 p-1">Convocatoria</th>
+                  <th class="whitespace-nowrap border border-blue-400 bg-blue-200 p-1">Fecha de registro</th>
+                  <th class="whitespace-nowrap border border-blue-400 bg-blue-200 p-1">Estatus</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% datos.forEach((info)=>{ %>
+                  <tr>
+                    <td class="whitespace-nowrap border border-blue-400 p-1">
+                      <%= info.idRegistro %>
+                    </td>
+                    <td class="whitespace-nowrap border border-blue-400 p-1">
+                      <%= info.codigo %>
+                    </td>
+                    <td class="whitespace-nowrap border border-blue-400 p-1">
+                      <%= info.nombre %>
+                        <%= info.apePaterno %>
+                          <%= info.apeMaterno %>
+                    </td>
+                    <td class="whitespace-nowrap border border-blue-400 p-1">
+                      <%= info.correo %>x
+                    </td>
+                    <td class="whitespace-nowrap border border-blue-400 p-1">
+                      <%= info.ciclo %>
+                    </td>
+                    <td class="whitespace-nowrap border border-blue-400 p-1">
+                      <%= info.fechaRegistro %>
+                    </td>
+                    <td class="whitespace-nowrap border border-blue-400 p-1"><a id="<%= info.idRegistro %>"
+                        value="<%= info.estatus %>" href="#">
+                        <%= info.estatus %>
+                      </a></td>
+                  </tr>
+                  <% }) %>
+              </tbody>
+            </table>
+          </section>
+        </main>
+    </body>
 
 </html>
