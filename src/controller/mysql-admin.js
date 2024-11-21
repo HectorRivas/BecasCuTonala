@@ -56,6 +56,24 @@ export async function inicio (req, res) {
   return res.render('admin/inicio', { title: 'Inicio', admin, datos: false })
 }
 
+export async function verRegistro (req, res) {
+  const admin = req.session.admin
+  const codigo = req.params.codigo
+  console.log('Codigo:', codigo)
+  if (!admin) {
+    console.log('Sesion caducada')
+    return res.redirect('/admin/login')
+  }
+  const select = 'SELECT *, date_format(fechaRevision, "%d-%m-%Y") as fechaRevision, date_format(fechaLimite, "%d-%m-%Y") as fechaLimite FROM doc_beca_alimentos, datos_beca_alimentos WHERE datosregistrobeca_codigo = codigo AND codigo = ?'
+  const [registro] = await sql.query(select, [codigo])
+  if (registro === 0) {
+    return res.render('admin/inicio', { title: 'Inicio', admin, codigo })
+  } else {
+    console.log('Datos encontrados:', registro)
+    return res.render('admin/validar-registro', { title: `validar - ${codigo}`, admin, codigo, registros: registro, user: registro[0] })
+  }
+}
+
 // Metodos POST
 export function registrarAdmin (req, res) {
   const codigo = req.body.codigo

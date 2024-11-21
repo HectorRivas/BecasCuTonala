@@ -221,6 +221,64 @@ main {
 
 }
 
+.modal-pdf{
+  width: 100%;
+  height: auto;
+  overflow: auto;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(0, 0, 0);
+  background-color: rgba(0, 0, 0, 0.4);
+
+  h1 {
+    text-align: center;
+    margin: auto;
+  }
+
+  .pdf-container {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: #fefefe;
+    margin: 15% auto;
+    padding: 20px;
+    border: none;
+    border-radius: 10px;
+    width: 95%;
+    max-width: 900px;
+    height: auto;
+
+    hr {
+      width: 100%;
+    }
+
+    footer {
+      display: flex;
+      width: 100%;
+      justify-content: flex-end;
+      gap: 10px;
+      padding: 15px;
+  
+      .confirm {
+        background-color: #09f;
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+  
+      .cancel {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 10px 24px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+    }
+  }
+}
+
 .modal {
   width: 100%;
   height: 100%;
@@ -278,7 +336,7 @@ main {
       margin-bottom: 5px;
     }
 
-    input {
+    input, select, textarea {
       padding: 5px;
       margin-bottom: 10px;
       border-radius: 5px;

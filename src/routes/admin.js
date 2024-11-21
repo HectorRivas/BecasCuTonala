@@ -18,6 +18,8 @@ adminRouter.get('/logout', queryAdmin.logout)
 
 adminRouter.get('/inicio', queryAdmin.inicio)
 
+adminRouter.get('/verRegistro/:codigo', queryAdmin.verRegistro)
+
 // Peticiones POST
 adminRouter.post('/registrar', queryAdmin.registrarAdmin)
 adminRouter.post('/iniciar-sesion-administrador', queryAdmin.iniciarSesion)

@@ -42,6 +42,7 @@ app.use('/alumnos', alumnosRouter)
 
 // Configura la ruta estática (opcional, si necesitas servir archivos estáticos)
 app.use(express.static(path.join(__dirname, 'public')))
+app.use('/documentos', express.static(path.join(__dirname, 'Documentos')))
 
 // Maneja el error 404
 app.use((req, res, next) => {

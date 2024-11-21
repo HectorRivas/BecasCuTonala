@@ -1,8 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
   <%- include('../partials/head') %>
+    <link rel="stylesheet" href="/styles/output.css">
     <link rel="stylesheet" href="/styles/formulario.css">
     <script type="module" src="/scripts/script.js"></script>
     <script type="module" src="/scripts/info-registro.js"></script>
@@ -12,9 +13,8 @@
         if (btn) {
           switch (btn.value) {
             case 'PENDIENTE':
-              btn.style.backgroundColor = 'rgb(31 114 216)'
-              btn.style.color = 'white'
-              btn.setAttribute('disabled', '')
+              btn.style.backgroundColor = 'rgb(31 114 216 / 80%)'
+              btn.style.color = 'white';
               break;
             case 'INCORRECTO':
               btn.style.backgroundColor = 'rgb(253 22 22 / 80%)'
@@ -29,12 +29,11 @@
             case 'ACTUALIZADO':
               btn.style.backgroundColor = 'rgb(31 114 216 / 80%)'
               btn.style.color = 'white';
-              btn.setAttribute('disabled', '')
               break;
             case 'ACTUALIZAR':
               btn.style.backgroundColor = 'rgb(31 114 216)'
               btn.style.color = 'white'
-              btn.style.cursor = 'pointer'
+              btn.setAttribute('disabled', '')
               break;
           }
         }
@@ -44,10 +43,13 @@
           console.log(updateButton)
           var cancelButton = document.getElementById("cancel")
           var modalDialog = document.getElementById("modalDialog")
+          var pdfObject = document.getElementById("pdfObject");
 
           // Update button opens a modal dialog
           updateButton.addEventListener("click", function () {
             modalDialog.showModal()
+            var pdfUrl = '/Documentos/' + "<%= doc.datosregistrobeca_codigo %>/" + "<%= doc.nombreArchivo %>"; // La URL del archivo PDF
+            pdfObject.data = pdfUrl; // Asignamos la URL al atributo 'src' del <embed>
             document.getElementById("idDocumentos").value = updateButton.id
             document.getElementById("documento").value = updateButton.getAttribute("data-bs-whatever")
           })
@@ -62,14 +64,14 @@
 </head>
 
 <body>
-  <%- include('../layouts/navbar-alumnos') %>
+  <%- include('../layouts/navbar-admin') %>
     <main>
       <div class="div-datosRegistro">
         <h1>Datos de registro</h1>
         <hr style="margin-bottom: 20px;">
         <label class="label-codigo" for="codigo">Codigo</label>
         <label class="label-registro" for="codigo"># de registro</label>
-        <input class="inp-codigo" value="<%= alumno.codigo %>" readonly>
+        <input class="inp-codigo" value="<%= codigo %>" readonly>
         <input class="inp-registro" value="<%= user.idRegistro %>" readonly>
         <label for="nombre">Nombre</label>
         <input value="<%= user.nombre %> <%= user.apePaterno %> <%= user.apeMaterno %>" readonly>
@@ -92,8 +94,6 @@
           <thead>
             <tr>
               <th class="whitespace-nowrap">Documento</th>
-              <th class="whitespace-nowrap">Fecha de revision</th>
-              <th class="whitespace-nowrap">Fecha Lim Entrega</th>
               <th class="whitespace-nowrap">Observaciones</th>
               <th class="whitespace-nowrap">Estatus</th>
             </tr>
@@ -103,12 +103,6 @@
               <tr>
                 <td class="whitespace-nowrap">
                   <%= doc.nombreArchivo %>
-                </td>
-                <td class="whitespace-nowrap">
-                  <%= doc.fechaRevision %>
-                </td>
-                <td class="whitespace-nowrap">
-                  <%= doc.fechaLimite %>
                 </td>
                 <td class="whitespace-nowrap">
                   <%= doc.observaciones %>
@@ -121,14 +115,26 @@
                 </td>
               </tr>
             </tbody>
-            <dialog class="modal" id="modalDialog">
+
+            <dialog class="modal-pdf" id="modalDialog">
+              <div class="pdf-container">
+                <h1>Documento PDF</h1>
+                <hr>
+                <object id="pdfObject" type="application/pdf" width="100%" height="600px">></object>
+                <footer>
+                  <button class="cancel" id="cancel" type="reset">Cancelar</button>
+                  <button class="confirm" type="submit">Validar</button>
+                </footer>
+              </div>
+            </dialog>
+            <!-- <dialog class="modal" id="modalDialog">
               <div class="formulario">
-                <h1>Actualizar documento</h1>
-                <form id="form" method="post" action="/alumnos/updateFile" enctype="multipart/form-data">
+                <h1>Validar documento</h1>
+                <form id="form" method="post" action="#" enctype="multipart/form-data">
                   <hr>
                   <div class="cod">
                     <label for="codigo">Codigo</label>
-                    <input type="text" name="codigo" id="codigo" value="<%= alumno.codigo %>" readonly>
+                    <input type="text" name="codigo" id="codigo" value="<%= codigo %>" readonly>
                   </div>
                   <div class="idDoc">
                     <label for="idDocumentos"># Doc</label>
@@ -138,22 +144,29 @@
                     <label for="documento">Documento</label>
                     <input type="text" name="documento" id="documento" readonly>
                   </div>
-                  <div class="newDoc">
-                    <label for="nuevoDocumento">Nuevo documento</label>
-                    <input type="file" name="nuevoDocumento" id="nuevoDocumento" accept=".pdf" required>
+                  <div class="doc">
+                    <label for="estatus">Estatus</label>
+                    <select name="estatus" id="estatus">
+                      <option value="PENDIENTE">PENDIENTE</option>
+                      <option value="INCORRECTO">INCORRECTO</option>
+                      <option value="CORRECTO">CORRECTO</option>
+                      <option value="ACTUALIZADO">ACTUALIZAR</option>
+                    </select>
                   </div>
+                  <div class="doc">
+                    <label for="observaciones">Observaciones</label>
+                    <textarea name="observaciones" id="observaciones" cols="30" rows="3"></textarea>
                   <footer>
                     <button class="cancel" id="cancel" type="reset">Cancelar</button>
                     <button class="confirm" type="submit">Actualizar</button>
                   </footer>
                 </form>
               </div>
-            </dialog>
+            </dialog> -->
             <% }) %>
         </table>
       </div>
     </main>
-
 </body>
 
 </html>

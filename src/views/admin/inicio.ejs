@@ -9,10 +9,12 @@
   <script type="module">
     let btn = document.getElementById('<%= info.idRegistro %>')
     if (btn) {
-      switch (btn.value) {
+      switch (btn.getAttribute("value")) {
         case 'PENDIENTE':
           btn.style.backgroundColor = 'rgb(31 114 216)'
           btn.style.color = 'white'
+          btn.style.cursor = 'pointer'
+          btn.style.borderRadius = '8px'
           break;
         case 'INCORRECTO':
           btn.style.backgroundColor = 'rgb(253 22 22 / 80%)'
@@ -27,11 +29,11 @@
         case 'ACTUALIZADO':
           btn.style.backgroundColor = 'rgb(31 114 216 / 80%)'
           btn.style.color = 'white';
-          btn.setAttribute('disabled', '')
           break;
         case 'ACTUALIZAR':
           btn.style.backgroundColor = 'rgb(31 114 216)'
           btn.style.color = 'white'
+          btn.setAttribute('disabled', '')
           break;
       }
     }
@@ -79,10 +81,13 @@
                     <td class="whitespace-nowrap border border-blue-400 p-1">
                       <%= info.fechaRegistro %>
                     </td>
-                    <td class="whitespace-nowrap border border-blue-400 p-1"><a id="<%= info.idRegistro %>"
-                        value="<%= info.estatus %>" href="#">
+                    <td class="whitespace-nowrap border border-blue-400 p-1">
+                      <a
+                        class="p-1 w-4/5"
+                        id="<%= info.idRegistro %>" value="<%= info.estatus %>" href="/admin/verRegistro/<%= info.codigo %>">
                         <%= info.estatus %>
-                      </a></td>
+                      </a>
+                    </td>
                   </tr>
                   <% }) %>
               </tbody>

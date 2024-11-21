@@ -72,6 +72,7 @@ export async function verRegistro (req, res) {
   }
   const select = 'SELECT *, date_format(fechaRevision, "%d-%m-%Y") as fechaRevision, date_format(fechaLimite, "%d-%m-%Y") as fechaLimite FROM doc_beca_alimentos, datos_beca_alimentos WHERE datosregistrobeca_codigo = codigo AND codigo = ?'
   const [registro] = await sql.query(select, alumno.codigo)
+  console.log('Registro:', registro)
   if (registro === 0) {
     return res.render('alumnos/inicio', { title: 'Inicio', alumno })
   } else {
