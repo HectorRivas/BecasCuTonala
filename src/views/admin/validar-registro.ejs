@@ -48,8 +48,8 @@
           // Update button opens a modal dialog
           updateButton.addEventListener("click", function () {
             modalDialog.showModal()
-            var pdfUrl = '/Documentos/' + "<%= doc.datosregistrobeca_codigo %>/" + "<%= doc.nombreArchivo %>"; // La URL del archivo PDF
-            pdfObject.data = pdfUrl; // Asignamos la URL al atributo 'src' del <embed>
+            //var pdfUrl = '/Documentos/' + "<%= doc.datosregistrobeca_codigo %>/" + "<%= doc.nombreArchivo %>"; // La URL del archivo PDF
+            //pdfObject.data = pdfUrl; // Asignamos la URL al atributo 'src' del <embed>
             document.getElementById("idDocumentos").value = updateButton.id
             document.getElementById("documento").value = updateButton.getAttribute("data-bs-whatever")
           })
@@ -116,7 +116,7 @@
               </tr>
             </tbody>
 
-            <dialog class="modal-pdf" id="modalDialog">
+            <!-- <dialog class="modal-pdf" id="modalDialog">
               <div class="pdf-container">
                 <h1>Documento PDF</h1>
                 <hr>
@@ -126,8 +126,8 @@
                   <button class="confirm" type="submit">Validar</button>
                 </footer>
               </div>
-            </dialog>
-            <!-- <dialog class="modal" id="modalDialog">
+            </dialog> -->
+            <dialog class="modal" id="modalDialog">
               <div class="formulario">
                 <h1>Validar documento</h1>
                 <form id="form" method="post" action="#" enctype="multipart/form-data">
@@ -162,7 +162,7 @@
                   </footer>
                 </form>
               </div>
-            </dialog> -->
+            </dialog>
             <% }) %>
         </table>
       </div>
