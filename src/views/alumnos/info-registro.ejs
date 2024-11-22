@@ -88,69 +88,71 @@
       <div class="div-docRegistro">
         <h1>Documentos de la solicitud</h1>
         <hr>
-        <table>
-          <thead>
-            <tr>
-              <th class="whitespace-nowrap">Documento</th>
-              <th class="whitespace-nowrap">Fecha de revision</th>
-              <th class="whitespace-nowrap">Fecha Lim Entrega</th>
-              <th class="whitespace-nowrap">Observaciones</th>
-              <th class="whitespace-nowrap">Estatus</th>
-            </tr>
-          </thead>
-          <% registros.forEach((doc)=>{ %>
-            <tbody>
+        <div style="overflow-x: auto;">
+          <table>
+            <thead>
               <tr>
-                <td class="whitespace-nowrap">
-                  <%= doc.nombreArchivo %>
-                </td>
-                <td class="whitespace-nowrap">
-                  <%= doc.fechaRevision %>
-                </td>
-                <td class="whitespace-nowrap">
-                  <%= doc.fechaLimite %>
-                </td>
-                <td class="whitespace-nowrap">
-                  <%= doc.observaciones %>
-                </td>
-                <td class="whitespace-nowrap">
-                  <button id="<%= doc.idDocumentos %>" value="<%= doc.validarArchivo %>" style="width: 100%;"
-                    data-bs-toggle="modal" data-bs-target="#actualizar" data-bs-whatever="<%= doc.nombreArchivo %>">
-                    <%= doc.validarArchivo %>
-                  </button>
-                </td>
+                <th class="whitespace-nowrap">Documento</th>
+                <th class="whitespace-nowrap">Fecha de revision</th>
+                <th class="whitespace-nowrap">Fecha Lim Entrega</th>
+                <th class="whitespace-nowrap">Observaciones</th>
+                <th class="whitespace-nowrap">Estatus</th>
               </tr>
-            </tbody>
-            <dialog class="modal" id="modalDialog">
-              <div class="formulario">
-                <h1>Actualizar documento</h1>
-                <form id="form" method="post" action="/alumnos/updateFile" enctype="multipart/form-data">
-                  <hr>
-                  <div class="cod">
-                    <label for="codigo">Codigo</label>
-                    <input type="text" name="codigo" id="codigo" value="<%= alumno.codigo %>" readonly>
-                  </div>
-                  <div class="idDoc">
-                    <label for="idDocumentos"># Doc</label>
-                    <input type="text" name="idDocumentos" id="idDocumentos" readonly>
-                  </div>
-                  <div class="doc">
-                    <label for="documento">Documento</label>
-                    <input type="text" name="documento" id="documento" readonly>
-                  </div>
-                  <div class="newDoc">
-                    <label for="nuevoDocumento">Nuevo documento</label>
-                    <input type="file" name="nuevoDocumento" id="nuevoDocumento" accept=".pdf" required>
-                  </div>
-                  <footer>
-                    <button class="cancel" id="cancel" type="reset">Cancelar</button>
-                    <button class="confirm" type="submit">Actualizar</button>
-                  </footer>
-                </form>
-              </div>
-            </dialog>
-            <% }) %>
-        </table>
+            </thead>
+            <% registros.forEach((doc)=>{ %>
+              <tbody>
+                <tr>
+                  <td class="whitespace-nowrap">
+                    <%= doc.nombreArchivo %>
+                  </td>
+                  <td class="whitespace-nowrap">
+                    <%= doc.fechaRevision %>
+                  </td>
+                  <td class="whitespace-nowrap">
+                    <%= doc.fechaLimite %>
+                  </td>
+                  <td class="whitespace-nowrap">
+                    <%= doc.observaciones %>
+                  </td>
+                  <td class="whitespace-nowrap">
+                    <button id="<%= doc.idDocumentos %>" value="<%= doc.validarArchivo %>" style="width: 100%;"
+                      data-bs-toggle="modal" data-bs-target="#actualizar" data-bs-whatever="<%= doc.nombreArchivo %>">
+                      <%= doc.validarArchivo %>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+              <dialog class="modal" id="modalDialog">
+                <div class="formulario">
+                  <h1>Actualizar documento</h1>
+                  <form id="form" method="post" action="/alumnos/updateFile" enctype="multipart/form-data">
+                    <hr>
+                    <div class="cod">
+                      <label for="codigo">Codigo</label>
+                      <input type="text" name="codigo" id="codigo" value="<%= alumno.codigo %>" readonly>
+                    </div>
+                    <div class="idDoc">
+                      <label for="idDocumentos"># Doc</label>
+                      <input type="text" name="idDocumentos" id="idDocumentos" readonly>
+                    </div>
+                    <div class="doc">
+                      <label for="documento">Documento</label>
+                      <input type="text" name="documento" id="documento" readonly>
+                    </div>
+                    <div class="newDoc">
+                      <label for="nuevoDocumento">Nuevo documento</label>
+                      <input type="file" name="nuevoDocumento" id="nuevoDocumento" accept=".pdf" required>
+                    </div>
+                    <footer>
+                      <button class="cancel" id="cancel" type="reset">Cancelar</button>
+                      <button class="confirm" type="submit">Actualizar</button>
+                    </footer>
+                  </form>
+                </div>
+              </dialog>
+              <% }) %>
+          </table>
+        </div>
       </div>
     </main>
 

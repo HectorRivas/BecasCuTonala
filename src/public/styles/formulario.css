@@ -172,7 +172,7 @@ main {
   outline: 1px solid rgba(49, 145, 255, 0.2);
   border-radius: 10px;
   gap: 4px;
-  overflow-x: auto;
+  /* overflow-x: auto; */
 
   h1 {
     width: 100%;

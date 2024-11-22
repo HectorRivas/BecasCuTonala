@@ -48,8 +48,8 @@
           // Update button opens a modal dialog
           updateButton.addEventListener("click", function () {
             modalDialog.showModal()
-            //var pdfUrl = '/Documentos/' + "<%= doc.datosregistrobeca_codigo %>/" + "<%= doc.nombreArchivo %>"; // La URL del archivo PDF
-            //pdfObject.data = pdfUrl; // Asignamos la URL al atributo 'src' del <embed>
+            var pdfUrl = '/Documentos/' + "<%= doc.datosregistrobeca_codigo %>/" + "<%= doc.nombreArchivo %>"; // La URL del archivo PDF
+            pdfObject.data = pdfUrl; // Asignamos la URL al atributo 'src' del <embed>
             document.getElementById("idDocumentos").value = updateButton.id
             document.getElementById("documento").value = updateButton.getAttribute("data-bs-whatever")
           })
@@ -116,18 +116,50 @@
               </tr>
             </tbody>
 
-            <!-- <dialog class="modal-pdf" id="modalDialog">
+            <dialog class="modal-pdf" id="modalDialog">
               <div class="pdf-container">
                 <h1>Documento PDF</h1>
                 <hr>
                 <object id="pdfObject" type="application/pdf" width="100%" height="600px">></object>
-                <footer>
-                  <button class="cancel" id="cancel" type="reset">Cancelar</button>
-                  <button class="confirm" type="submit">Validar</button>
-                </footer>
               </div>
-            </dialog> -->
-            <dialog class="modal" id="modalDialog">
+              <div class="validar-pdf-container">
+                <div class="formulario">
+                  <h1>Validar documento</h1>
+                  <form id="form" method="post" action="#" enctype="multipart/form-data">
+                    <hr>
+                    <div class="cod">
+                      <label for="codigo">Codigo</label>
+                      <input type="text" name="codigo" id="codigo" value="<%= codigo %>" readonly>
+                    </div>
+                    <div class="idDoc">
+                      <label for="idDocumentos"># Doc</label>
+                      <input type="text" name="idDocumentos" id="idDocumentos" readonly>
+                    </div>
+                    <div class="doc">
+                      <label for="documento">Documento</label>
+                      <input type="text" name="documento" id="documento" readonly>
+                    </div>
+                    <div class="doc">
+                      <label for="estatus">Estatus</label>
+                      <select name="estatus" id="estatus">
+                        <option value="PENDIENTE">PENDIENTE</option>
+                        <option value="INCORRECTO">INCORRECTO</option>
+                        <option value="CORRECTO">CORRECTO</option>
+                        <option value="ACTUALIZADO">ACTUALIZAR</option>
+                      </select>
+                    </div>
+                    <div class="doc">
+                      <label for="observaciones">Observaciones</label>
+                      <textarea name="observaciones" id="observaciones" cols="30" rows="3"></textarea>
+                    <footer>
+                      <button class="cancel" id="cancel" type="reset">Cancelar</button>
+                      <button class="confirm" type="submit">Actualizar</button>
+                    </footer>
+                  </form>
+                </div>
+              </div>
+            </dialog>
+            <!-- <dialog class="modal" id="modalDialog">
               <div class="formulario">
                 <h1>Validar documento</h1>
                 <form id="form" method="post" action="#" enctype="multipart/form-data">
@@ -162,7 +194,7 @@
                   </footer>
                 </form>
               </div>
-            </dialog>
+            </dialog> -->
             <% }) %>
         </table>
       </div>

@@ -70,8 +70,11 @@ export async function verRegistro (req, res) {
     console.log('Sesion caducada')
     return res.redirect('/alumnos/login')
   }
+
+  console.log('Alumno:', alumno.codigo)
   const select = 'SELECT *, date_format(fechaRevision, "%d-%m-%Y") as fechaRevision, date_format(fechaLimite, "%d-%m-%Y") as fechaLimite FROM doc_beca_alimentos, datos_beca_alimentos WHERE datosregistrobeca_codigo = codigo AND codigo = ?'
   const [registro] = await sql.query(select, alumno.codigo)
+
   console.log('Registro:', registro)
   if (registro === 0) {
     return res.render('alumnos/inicio', { title: 'Inicio', alumno })
@@ -294,7 +297,8 @@ export async function mysqlUploadFiles (req, res) {
   try {
     await Promise.all(documentos.map(insertarDocumento))
     console.log('ARCHIVOS CARGADOS CORRECTAMENTE!!')
-    return res.render('/alumnos/inicio')
+    // return res.render('alumnos/inicio', { title: 'Inicio', alumno })
+    inicio(req, res)
   } catch (error) {
     console.error('Error al cargar documentos:', error.message)
     return res.status(500).render('alumnos/inicio', { title: 'Inicio', alumno })
